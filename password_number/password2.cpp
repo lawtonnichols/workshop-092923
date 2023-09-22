@@ -4,7 +4,7 @@
 using namespace std;
 
 bool isCorrect(int password) {
-  if (password % 8 == 1) {
+  if (password * password + password == 1806) {
     return true;
   } else {
     return false;

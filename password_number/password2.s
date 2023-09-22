@@ -14,12 +14,11 @@ _Z9isCorrecti:
 	.cfi_def_cfa_register 6
 	mov	DWORD PTR -4[rbp], edi
 	mov	eax, DWORD PTR -4[rbp]
-	cdq
-	shr	edx, 29
+	imul	eax, eax
+	mov	edx, eax
+	mov	eax, DWORD PTR -4[rbp]
 	add	eax, edx
-	and	eax, 7
-	sub	eax, edx
-	cmp	eax, 1
+	cmp	eax, 1806
 	jne	.L2
 	mov	eax, 1
 	jmp	.L3
