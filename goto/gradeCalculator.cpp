@@ -2,33 +2,33 @@
 using namespace std;
 
 int main() {
-  cout << "Enter a grade as a percentage: ";
-  double grade;
+  cout << "Enter a grade as an (integer) percentage: ";
+  int grade;
   cin >> grade;
 
   /*
-  if (grade >= 90.0) cout << "A" << endl;
-  else if (grade >= 80.0) cout << "B" << endl;
-  else if (grade >= 70.0) cout << "C" << endl;
-  else if (grade >= 60.0) cout << "D" << endl;
+  if (grade >= 90) cout << "A" << endl;
+  else if (grade >= 80) cout << "B" << endl;
+  else if (grade >= 70) cout << "C" << endl;
+  else if (grade >= 60) cout << "D" << endl;
   else cout << "F" << endl;
   */
 
   // the following works the same as the commented code above:
   
-  if (grade < 90.0) goto checkB; // cmp grade, 90.0; jl checkB;
+  if (grade < 90) goto checkB; // cmp grade, 90; jl checkB;
   cout << "A" << endl;
   goto done;
 checkB: // this is a *label*
-  if (grade < 80.0) goto checkC;
+  if (grade < 80) goto checkC;
   cout << "B" << endl;
   goto done;
 checkC:
-  if (grade < 70.0) goto checkD;
+  if (grade < 70) goto checkD;
   cout << "C" << endl;
   goto done;
 checkD:
-  if (grade < 60.0) goto F;
+  if (grade < 60) goto F;
   cout << "D" << endl;
   goto done;
 F:
