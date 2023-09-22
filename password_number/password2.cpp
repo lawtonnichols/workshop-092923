@@ -3,6 +3,14 @@
 #include <cstdlib>
 using namespace std;
 
+bool isCorrect(int password) {
+  if (password % 8 == 1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 int main() {
   char str[100];
 
@@ -12,7 +20,7 @@ int main() {
 
   int num = atoi(str);
 
-  if (num % 8 == 1) {
+  if (isCorrect(num)) {
     printf("Access granted :)\n");
   } else {
     printf("Access denied! :(\n");

@@ -1,6 +1,37 @@
 	.file	"password2.cpp"
 	.intel_syntax noprefix
 	.text
+	.globl	_Z9isCorrecti
+	.type	_Z9isCorrecti, @function
+_Z9isCorrecti:
+.LFB15:
+	.cfi_startproc
+	endbr64
+	push	rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	mov	rbp, rsp
+	.cfi_def_cfa_register 6
+	mov	DWORD PTR -4[rbp], edi
+	mov	eax, DWORD PTR -4[rbp]
+	cdq
+	shr	edx, 29
+	add	eax, edx
+	and	eax, 7
+	sub	eax, edx
+	cmp	eax, 1
+	jne	.L2
+	mov	eax, 1
+	jmp	.L3
+.L2:
+	mov	eax, 0
+.L3:
+	pop	rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE15:
+	.size	_Z9isCorrecti, .-_Z9isCorrecti
 	.section	.rodata
 .LC0:
 	.string	"Enter the password: "
@@ -12,7 +43,7 @@
 	.globl	main
 	.type	main, @function
 main:
-.LFB15:
+.LFB16:
 	.cfi_startproc
 	endbr64
 	push	rbp
@@ -43,33 +74,30 @@ main:
 	call	atoi@PLT
 	mov	DWORD PTR -116[rbp], eax
 	mov	eax, DWORD PTR -116[rbp]
-	cdq
-	shr	edx, 29
-	add	eax, edx
-	and	eax, 7
-	sub	eax, edx
-	cmp	eax, 1
-	jne	.L2
+	mov	edi, eax
+	call	_Z9isCorrecti
+	test	al, al
+	je	.L5
 	lea	rax, .LC1[rip]
 	mov	rdi, rax
 	call	puts@PLT
-	jmp	.L3
-.L2:
+	jmp	.L6
+.L5:
 	lea	rax, .LC2[rip]
 	mov	rdi, rax
 	call	puts@PLT
-.L3:
+.L6:
 	mov	eax, 0
 	mov	rdx, QWORD PTR -8[rbp]
 	sub	rdx, QWORD PTR fs:40
-	je	.L5
+	je	.L8
 	call	__stack_chk_fail@PLT
-.L5:
+.L8:
 	leave
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
-.LFE15:
+.LFE16:
 	.size	main, .-main
 	.ident	"GCC: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0"
 	.section	.note.GNU-stack,"",@progbits
